@@ -1,11 +1,11 @@
 import { useApp } from "@/contexte/AppProvider"
 import { Link } from "expo-router"
-import { View,Text } from "react-native"
+import { View,Text, Pressable } from "react-native"
 import {style} from '../styles/acceuil'
 import { StyleSheet } from "react-native"
 
 export default function Index() {
-  const {current} = useApp()
+  const {current, setCurrent} = useApp()
 
   return (
     <View style={style.conteiner}>
@@ -15,6 +15,12 @@ export default function Index() {
         <>
           <Link style={style.button} href="task">tasks</Link>
           <Link style={style.button} href="profile">profile</Link>
+          <Pressable onPress={()=>setCurrent(null)}>
+            <Text>
+                logout
+            </Text>
+          </Pressable>
+          
         </>
       )}
     </View>
