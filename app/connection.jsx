@@ -25,11 +25,10 @@ export default function Connection() {
 
   return (
     <View style={{flex:1, justifyContent: "center", alignItems: "center"}}>
-        <Text>Connection</Text>
         <TextInput
         value={email}
         onChangeText={setEmail}
-        placeholder='email ...'
+        placeholder='username ...'
         style={{borderWidth: 1, margin: 30}}
         />
         <TextInput

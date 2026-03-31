@@ -35,12 +35,20 @@ export default function tasksDisplay() {
 
   return (
     <View style={style.conteiner}>
-
+        {console.log(currentTasks.length)}
+        {currentTasks.length == 0 ? (
+            <Text>
+                Aucune Task
+            </Text>
+        ):(
             <FlatList
             data={currentTasks}
             keyExtractor={item=>item.name}
             renderItem={({item}) => <Item item={item} />}
             />
+        )}
+
+        
         <Link style={style.button} href="task/new">Ajouter une task</Link>
     </View>
   )

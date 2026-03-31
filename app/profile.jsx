@@ -2,6 +2,7 @@ import { useApp } from '../contexte/AppProvider'
 import { Pressable, TextInput, View, Text } from 'react-native'
 import { useState } from 'react'
 import { style } from '../styles/connetion'
+import { Redirect } from 'expo-router'
 
 export default function profile() {
     const {user,setUser, current} = useApp()
@@ -10,10 +11,13 @@ export default function profile() {
     const [newPassword,setNewPassword] = useState("")
     const [confirmPassword,setConfirmPassword] = useState("")
 
+    const currentUser = user.filter(u=>u.email == current)[0]
+    console.log(currentUser)
+
     if (!current) return <Redirect href={"connection"} />
 
     function handleSubmit() {
-        if (user.password != currentPassword) return
+        if (currentUser.password != currentPassword) return
 
         if (newPassword != confirmPassword) return
 
@@ -27,10 +31,10 @@ export default function profile() {
     }
 
   return (
-    <View>
-        <Text>email : {current}</Text>
-        <Pressable style={style.button} onPress={()=>setIsOpen(true)}>
-            <Text>
+    <View style={style.conteiner}>
+        <Text>username : {current}</Text>
+        <Pressable style={{width:"100%", alignItems: "center"}} onPress={()=>setIsOpen(true)}>
+            <Text style={style.button}>
                 Change password
             </Text>
         </Pressable>

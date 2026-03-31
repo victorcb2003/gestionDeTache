@@ -14,20 +14,24 @@ export default function index() {
     function handleSubmit() {
       if (!email.trim() || !password.trim()) return
 
+
+      let valide = true
       user.forEach(element => {
-        if (element.email == email) return
+        if (element.email == email) valide = true
       });
+
+      if (!valide) return
 
       setUser([...user, {email,password,tasks:[]}])
       route.push("/")
     }
   return (
     <View style={{flex:1, justifyContent: "center", alignItems: "center"}}>
-        <Text>Inscription</Text>
         <TextInput
         value={email}
         onChangeText={setEmail}
-        placeholder='email ...'
+        keyboardType='email'
+        placeholder='username ...'
         style={{borderWidth: 1, margin: 30}}
         />
         <TextInput
